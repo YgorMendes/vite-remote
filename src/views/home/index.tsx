@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 // contexts
 // import useAuth from "host/useAuth";
 import { useUser } from "host/UserAuth";
-import Title from "host/Title";
+// import Title from "host/Title";
 import { useNavigate } from "react-router-dom";
 
 const HomeView = () => {
@@ -30,8 +30,8 @@ const HomeView = () => {
         <p className="text-gray-700">
           Bem vindo,{" "}
           <span className="font-bold">
-            {/* {user?.name ? user?.name : "Usuário não encontrado"} */}
-            <Title />
+            {user?.name ? user?.name : "Usuário não encontrado"}
+            {/* <Title /> */}
           </span>
         </p>
       </div>
