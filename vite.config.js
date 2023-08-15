@@ -36,8 +36,6 @@ export default defineConfig({
       },
     }),
   ],
-  // base: '/dist/',
-  // publicDir: 'dist',
   build: {
     modulePreload: false,
     target: "esnext",
