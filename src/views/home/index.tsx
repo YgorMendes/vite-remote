@@ -2,17 +2,26 @@ import React, { useContext, useEffect, useState } from "react";
 
 // contexts
 // import useAuth from "host/useAuth";
-import { useUser } from "host/UserAuth";
+// import { useUser } from "host/UserAuth";
+import { useUserKeycloack } from "host/useUserKeycloack";
 // import Title from "host/Title";
 import { useNavigate } from "react-router-dom";
 
 const HomeView = () => {
-  const { user, isAuthenticated } = useUser();
+  const { getUserName, userIsAuthenticate, userAllowedApps } = useUserKeycloack();
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(isAuthenticated());
-  }, []);
+    console.log(getUserName());
+    console.log(userIsAuthenticate());
+    console.log(userAllowedApps());
+    const havePermission = userAllowedApps()?.findIndex((app: any) => app.title === "Product A")
+    console.log(havePermission)
+
+    if (havePermission == -1) {
+      window.location.href = "http://localhost:3000/home"
+    }
+  }, [useUserKeycloack]);
 
   return (
     <div className="mt-8">
@@ -30,7 +39,7 @@ const HomeView = () => {
         <p className="text-gray-700">
           Bem vindo,{" "}
           <span className="font-bold">
-            {user?.name ? user?.name : "Usuário não encontrado"}
+            {getUserName() ? getUserName() : "Usuário não encontrado"}
             {/* <Title /> */}
           </span>
         </p>
